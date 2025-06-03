@@ -46,6 +46,7 @@ class PlaylistTest {
         assertNotNull(playlist.atSecond(727));
         assertThrowsExactly(IndexOutOfBoundsException.class,() -> playlist.atSecond(1024));
     }
+
     @Test
     void TestatSecondOutOfBounds() {
         Playlist playlist = new Playlist();
