@@ -26,6 +26,7 @@ public class ImageProcessor {
         }
     }
     public void changeBrightness(int brightness){
+        long start = System.currentTimeMillis();
         int width = img.getWidth();
         int height = img.getHeight();
         for(int i = 0; i < width; i++){
@@ -37,8 +38,11 @@ public class ImageProcessor {
                 img.setRGB(i,j, new Color(r,g,b).getRGB());
             }
         }
+        long end = System.currentTimeMillis();
+        System.out.println("Time taken to execute the function in miliseconds: "+(end-start));
     }
     public void changeBrightnessMultiThread(int brightness){
+        long start1 = System.currentTimeMillis();
         int cores = Runtime.getRuntime().availableProcessors();
         Thread[] threads = new Thread[cores];
         int width = img.getWidth();
@@ -73,8 +77,11 @@ public class ImageProcessor {
                 System.out.println("Error joining threads");
             }
         }
+        long end = System.currentTimeMillis();
+        System.out.println("Time taken to execute the function in miliseconds: "+(end-start1));
     }
     public void changeBrightnessThreadPool(int brightness){
+        long start = System.currentTimeMillis();
         ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         int height = img.getHeight();
         int width = img.getWidth();
@@ -96,5 +103,7 @@ public class ImageProcessor {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        long end = System.currentTimeMillis();
+        System.out.println("Time taken to execute the function in miliseconds: "+(end-start));
     }
 }
