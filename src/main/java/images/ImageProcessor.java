@@ -82,11 +82,11 @@ public class ImageProcessor {
             final int finalI = i;
             executorService.submit(() -> {
                 for(int j = 0; j < width; j++) {
-                    Color c = new Color(img.getRGB(finalI, j));
+                    Color c = new Color(img.getRGB(j,finalI));
                     int r = Math.clamp(c.getRed() + brightness, 0, 255);
                     int g = Math.clamp(c.getGreen() + brightness, 0, 255);
                     int b = Math.clamp(c.getBlue() + brightness, 0, 255);
-                    img.setRGB(finalI, j, new Color(r, g, b).getRGB());
+                    img.setRGB(j,finalI, new Color(r, g, b).getRGB());
                 }
             });
         }
